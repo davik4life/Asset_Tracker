@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render # type: ignore
 
 # Create your views here.
-from rest_framework import generics
+from rest_framework import generics # type: ignore
 from .models import MaintenanceRecord
 from .serializers import MaintenanceRecordSerializer, MaintenanceScheduleSerializer, AssetSerializer
 
