@@ -1,11 +1,13 @@
-from rest_framework import serializers # type: ignore
-from .models import *
+from rest_framework import serializers
+from .models import Asset, MaintenanceRecord, MaintenanceSchedule
+from typing import ClassVar
+
 
 class AssetSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Asset
-        fields = '__all__'
-        read_only_fields = ["owner"]
+        model: ClassVar[type] = Asset
+        fields: ClassVar[str]= '__all__'
+        read_only_fields: ClassVar[list[str]] = ["owner"]
 
 
 class MaintenanceRecordSerializer(serializers.ModelSerializer):
