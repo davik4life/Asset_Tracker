@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
 # from rest_framework import generics
 from .models import *
 from .serializers import *
@@ -9,6 +8,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from datetime import date
 
+
+# Create your views here.
 class AssetViewSet(ModelViewSet):
     serializer_class = AssetSerializer
 
@@ -41,18 +42,3 @@ class ScheduleViewSet(ModelViewSet):
     queryset = MaintenanceSchedule.objects.all()
     serializer_class = MaintenanceScheduleSerializer
 
-
-# class MaintenanceRecordList(generics.ListCreateAPIView):
-#     queryset = MaintenanceRecord.objects.all()
-#     serializer_class = MaintenanceRecordSerializer
-#     def perform_create(self, serializer):
-#         # Custom logic before creating a maintenance record
-#         serializer.save()
-
-# class MaintenanceRecordDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = MaintenanceRecord.objects.all()
-#     serializer_class = MaintenanceRecordSerializer
-
-#     def perform_update(self, serializer):
-#         # Custom logic before updating a maintenance record
-#         serializer.save()
