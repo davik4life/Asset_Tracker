@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import Asset, MaintenanceRecord, MaintenanceSchedule
 
-class AssetSerializer(serializers.ModelSerializer):
-    class Meta:
+class AssetSerializer(serializers.ModelSerializer): # Inherit from Serializer here
+    class Meta: # Inherit from Meta here
         model = Asset
         fields = '__all__'
         read_only_fields = ["owner"]
@@ -17,4 +17,3 @@ class MaintenanceScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = MaintenanceSchedule
         fields = '__all__'
-        read_only_fields = []
