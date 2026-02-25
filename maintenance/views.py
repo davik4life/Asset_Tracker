@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 
-# from rest_framework import generics
 from .models import *
 from .serializers import *
 from rest_framework.viewsets import ModelViewSet
@@ -14,6 +15,11 @@ from datetime import date
 class AssetViewSet(ModelViewSet):
     serializer_class = AssetSerializer
     permission_classes = [IsAuthenticated]
+
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['name','category', 'condition']
+    search_fields = ['name', 'category', 'condition']
+    ordering_fields = ['name', 'purchase_date', 'created_at']
 
     def get_queryset(self): #type : ignore
         return Asset.objects.filter(owner=self.request.user)
@@ -35,7 +41,12 @@ class MaintenanceRecordViewSet(ModelViewSet):
     serializer_class = MaintenanceRecordSerializer
     permission_classes = [IsAuthenticated]
 
-    def get_queryset(self): #type : ignore
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['asset__name', 'service_type']
+    search_fields = ['asset__name', 'service_type', 'created_by__username']
+    ordering_fields = ['service_date', 'cost']
+
+    def get_queryset(self):
         return MaintenanceRecord.objects.filter(created_by=self.request.user)
     
     def perform_create(self, serializer):
@@ -44,6 +55,11 @@ class MaintenanceRecordViewSet(ModelViewSet):
 class ScheduleViewSet(ModelViewSet):
     serializer_class = MaintenanceScheduleSerializer
     permission_classes = [IsAuthenticated]
+
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_fields = ['asset__name']
+    search_fields = ['asset__name']
+    ordering_fields = ['next_service_date', 'interval_days']
 
     def get_queryset(self):
         return MaintenanceSchedule.objects.filter(asset__owner=self.request.user)
