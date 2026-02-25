@@ -21,8 +21,11 @@ class AssetViewSet(ModelViewSet):
     search_fields = ['name', 'category', 'condition']
     ordering_fields = ['name', 'purchase_date', 'created_at']
 
-    def get_queryset(self): #type : ignore
+    def get_queryset(self):
         return Asset.objects.filter(owner=self.request.user)
+    
+    # def post_queryset(self):
+    #     return Asset.objects.filter(owner=self.request.user)
     
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -63,6 +66,4 @@ class ScheduleViewSet(ModelViewSet):
 
     def get_queryset(self):
         return MaintenanceSchedule.objects.filter(asset__owner=self.request.user)
-
-    # queryset = MaintenanceSchedule.objects.all()
     
