@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticated
 
 # from rest_framework import generics
 from .models import *
@@ -12,6 +13,7 @@ from datetime import date
 # Create your views here.
 class AssetViewSet(ModelViewSet):
     serializer_class = AssetSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self): #type : ignore
         return Asset.objects.filter(owner=self.request.user)
@@ -31,6 +33,7 @@ class AssetViewSet(ModelViewSet):
 
 class MaintenanceRecordViewSet(ModelViewSet):
     serializer_class = MaintenanceRecordSerializer
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self): #type : ignore
         return MaintenanceRecord.objects.filter(created_by=self.request.user)
@@ -39,6 +42,11 @@ class MaintenanceRecordViewSet(ModelViewSet):
         serializer.save(created_by=self.request.user)
 
 class ScheduleViewSet(ModelViewSet):
-    queryset = MaintenanceSchedule.objects.all()
     serializer_class = MaintenanceScheduleSerializer
+    permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        return MaintenanceSchedule.objects.filter(asset__owner=self.request.user)
+
+    # queryset = MaintenanceSchedule.objects.all()
+    
