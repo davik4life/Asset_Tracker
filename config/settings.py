@@ -174,3 +174,7 @@ AUTH_USER_MODEL = 'accounts.User'  # Use our custom user model
 # STATIC_URL = '/static/'
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# This is the "Magic" line - it tells WhiteNoise to serve files even if 
+# the server thinks it's not supposed to
+WHITENOISE_USE_FINDERS = True
