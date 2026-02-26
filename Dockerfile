@@ -19,4 +19,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /code/
 
 # Run the app using Gunicorn
+
 CMD ["gunicorn", "--bind", ":8000", "Asset_Tracker:application"]
