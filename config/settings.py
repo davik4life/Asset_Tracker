@@ -21,8 +21,10 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Load the .env file
-load_dotenv(os.path.join(BASE_DIR, '.env'))
-
+# load_dotenv(os.path.join(BASE_DIR, '.env'))
+# Only load .env if we are NOT on Fly.io
+if not os.getenv('asset_tracker'):
+    load_dotenv()
 # Now you can use os.getenv to pull values
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
@@ -56,7 +58,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1, localhost').split(',') # Update this in production
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'asset-tracker.fly.dev,127.0.0.1,localhost').split(',') # Update this in production
+CSRF_TRUSTED_ORIGINS = ['https://asset-tracker.fly.dev']
 
 # Automatically add the Render external hostname if it exists in the environment
 RENDER_EXTERNAL_HOSTNAME = os.getenv('RENDER_EXTERNAL_HOSTNAME')
@@ -80,6 +83,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -161,6 +165,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Where Fly will collect files
 
 
 AUTH_USER_MODEL = 'accounts.User'  # Use our custom user model
