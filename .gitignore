@@ -1,0 +1,18 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Environment secrets (CRITICAL)
+.env
+
+# Database (You usually don't want your local DB on GitHub)
+*.sqlite3
+
+# Django cache and compiled files
+__pycache__/
+*.py[cod]
+
+# OS specific files
+.DS_Store
+Thumbs.db
