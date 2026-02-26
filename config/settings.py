@@ -169,3 +169,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Where Fly will collect fil
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTH_USER_MODEL = 'accounts.User'  # Use our custom user model
+
+# # At the bottom of settings.py
+# STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
