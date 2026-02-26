@@ -8,7 +8,23 @@ Base API URL: https://127.0.0.1:8000/api/auth/token # Replace with your desired 
 
 **::: Production :::**
 
-Base URL: https://your-ap.onrender.com/api/
+Base URL: https://asset-tracker.fly.dev/api/auth/token # Use the login info below to obtain token
+Test Login
+```json
+{
+  "username": "victor",
+  "password": "Unique12."
+}
+```
+
+Admin URL: https://asset-tracker.fly.dev/admin/ # Use the login below to obtain token
+Test Login
+```json
+{
+  "username": "victor",
+  "password": "Unique12."
+}
+```
 
 **Endpoints:**
 Authentication Endpoints (JWT)
@@ -23,8 +39,8 @@ POST:
 Test Login
 ```json
 {
-  "username": "runtest",
-  "password": "RunPass12."
+  "username": "victor",
+  "password": "Unique12."
 }
 ```
 **Response**
