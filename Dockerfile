@@ -20,5 +20,5 @@ COPY . /code/
 
 # Run the app using Gunicorn
 
-# CMD ["gunicorn", "--bind", ":8000", "assettracker:application"]
-CMD ["gunicorn", "--bind", ":8000", "asset_tracker.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "assettracker:application"]
+# CMD ["gunicorn", "--bind", ":8000", "asset_tracker.wsgi:application"]
