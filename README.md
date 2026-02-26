@@ -8,7 +8,7 @@ Base API URL: https://127.0.0.1:8000/api/auth/token # Replace with your desired 
 
 **::: Production :::**
 
-Base URL: https://asset-tracker.fly.dev/api/auth/token # Use the login info below to obtain token
+Base URL: https://asset-tracker.fly.dev/api/auth/token # Use the login info below to obtain token.
 Test Login
 ```json
 {
