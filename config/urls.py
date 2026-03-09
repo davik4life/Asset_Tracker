@@ -18,6 +18,12 @@ from django.contrib import admin #type: ignore
 from django.urls import path, include #type: ignore
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+# --- ASSET_TRACKER (Tally) ADMIN BRANDING ---
+admin.site.site_header = "Tally Dashboard"       # The text on the login screen and top header
+admin.site.site_title = "Tally Admin Portal"          # The text in the browser tab
+admin.site.index_title = "Welcome to the Tally Dashboard" # The text on the main index page
+# -------------------------------
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('maintenance.urls')),
