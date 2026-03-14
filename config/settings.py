@@ -37,6 +37,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 # JWT Setttings
@@ -79,6 +80,7 @@ INSTALLED_APPS = [
     'maintenance',
     'django_filters',
     'accounts',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -167,6 +169,16 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Where Fly will collect files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# DRF spectacular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Asset Manager (Tally) API',
+    'DESCRIPTION': 'Official API documentation for the Tally platform.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # This tells Swagger to easily handle your JWT tokens!
+    'SECURITY': [{'jwt': []}], 
+}
 
 AUTH_USER_MODEL = 'accounts.User'  # Use our custom user model
 

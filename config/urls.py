@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin #type: ignore
 from django.urls import path, include #type: ignore
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 # --- ASSET_TRACKER (Tally) ADMIN BRANDING ---
 admin.site.site_header = "Tally Dashboard"       # The text on the login screen and top header
@@ -29,4 +30,14 @@ urlpatterns = [
     path('api/', include('maintenance.urls')),
     path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # --- API DOCUMENTATION ENDPOINTS ---
+    # 1. The raw JSON schema (machines read this)
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    
+    # 2. Swagger UI (You and frontend devs will use this the most)
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    
+    # 3. Redoc UI (An alternative, cleaner reading view)
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
