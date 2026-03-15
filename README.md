@@ -5,7 +5,7 @@ This is the README for the Asset_Tracker API Documentation
 ::: Local :::
 
 Base API URL: https://127.0.0.1:8000/api/auth/token # Replace with your desired port.
-
+Swagger UI Documentation: http://127.0.0.1:8000/api/docs/
 **::: Production :::**
 
 Base URL: https://asset-tracker.fly.dev/api/auth/token # Use the login info below to obtain token.
